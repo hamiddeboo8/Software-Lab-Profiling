@@ -16,39 +16,59 @@ public class Main {
     {
         int m = s1.length();
         int n = s2.length();
-        if (m == 0 || n == 0)
-            return "";
-        ArrayList<String> s1_subsets = getSubsets(s1);
-        ArrayList<String> s2_subsets = getSubsets(s2);
-        int l = 0;
-        String lcs = "";
-        for(String x: s1_subsets){
-            for(String y: s2_subsets){
-                if (x.equals(y) && x.length() > l){
-                    lcs = x;
-                    l = lcs.length();
+        int[][] dp = new int[m+1][n+1];
+        for(int i=0;i<=m;i++)
+        {
+            dp[i][0] = 0;
+        }
+        for(int j=0;j<=n;j++)
+        {
+            dp[0][j] = 0;
+        }
+        for(int i=1;i<=m;i++)
+        {
+            for(int j=1;j<=n;j++)
+            {
+                if(s1.charAt(i-1)==s2.charAt(j-1))
+                {
+                    dp[i][j] = 1+dp[i-1][j-1];
+                }
+                else
+                {
+                    dp[i][j] = Math.max(dp[i][j-1],dp[i-1][j]);
                 }
             }
         }
 
-        return lcs;
-    }
-
-    private static ArrayList<String> getSubsets(String s1) {
-        ArrayList<String> result = new ArrayList<>();
-        int allMasks = (1 << s1.length());
-        for (int i = 1; i < allMasks; i++)
+        // finding the subsequence
+        int i=m;
+        int j=n;
+        List<Character> char_list = new ArrayList<>();
+        while(i>0 && j>0)
         {
-            ArrayList<Character> newRes = new ArrayList<Character>();
-            for (int j = 0; j < s1.length(); j++)
-                if ((i & (1 << j)) > 0)
-                    newRes.add(s1.charAt(j));
-            String x = new String();
-            for (char y: newRes) {
-                x += y;
+            if(s1.charAt(i-1)==s2.charAt(j-1))
+            {
+                char_list.add(s1.charAt(i-1));
+                i--;
+                j--;
             }
-            result.add(x);
+            else
+            {
+                if(dp[i][j-1]>dp[i-1][j])
+                {
+                    j--;
+                }
+                else
+                {
+                    i--;
+                }
+            }
         }
-        return result;
+        StringBuilder sb = new StringBuilder();
+        for(int k=char_list.size()-1;k>=0;k--)
+        {
+            sb.append(char_list.get(k));
+        }
+        return sb.toString();
     }
 }
