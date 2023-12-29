@@ -48,9 +48,11 @@ $AAAABBBBCCCCCCCA$ و $AAAXXCABCCCZZZBCFBC$
 
 <div align='center'>
 
-$$ 24.34 \% : Average \quad CPU \quad Usage $$
-$$ 129.79 MB : Memory \quad Usage $$
-$ Runtime :$ More than $9 Mins$
+Average CPU Usage : $24.34$ %
+
+Memory Usage: $129.79 MB$
+
+Runtime : More than $9 Mins$
 
 </div>
 
@@ -77,9 +79,11 @@ $ Runtime :$ More than $9 Mins$
 
 <div align='center'>
 
-$$ 0.67 \% : Average \quad CPU \quad Usage $$
-$$ 12 MB : Memory \quad Usage $$
-$ Runtime :$ Around $1 Sec$
+Average CPU Usage : $0.67$ %
+
+Memory Usage: $12 MB$
+
+Runtime : Around $1 Sec$
 
 </div>
 
